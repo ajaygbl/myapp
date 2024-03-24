@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useState } from "react";
 
 function App() {
@@ -12,13 +13,23 @@ setAdvice(data.slip.advice);
 setCount((c) => c+1);
 }
 
+useEffect(function () {
+  getAdvice();
+}, [])
+
 return (
 <div className="App">
 <h1>{advice}</h1>
 <button onClick={getAdvice}>Get Advice</button>
-<p>you have read {count} advices till now</p>
+<Message count={count}/>
 </div>
 );
+}
+
+function Message(props) {
+  return (
+    <p>you have read {props.count} advices till now</p>
+  )
 }
 
 export default App;
